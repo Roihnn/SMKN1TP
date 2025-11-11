@@ -419,6 +419,9 @@ footer {
   width: 100%;
   height: auto;
   display: block;
+  /* ensure tall images don't push layout on small screens and crop nicely */
+  object-fit: cover;
+  max-height: 360px;
 }
 
 .sambutan .photo-caption {
@@ -710,6 +713,8 @@ html.light-mode body {
     padding: 6px 8px;
     border-radius: 12px;
     gap: 8px;
+    /* make nav-wrap the positioned ancestor for the toggle */
+    position: relative;
   }
 
   .brand {
@@ -741,6 +746,27 @@ html.light-mode body {
 
   .nav-toggle {
     display: block;
+    /* position the burger inside the nav-wrap so it aligns with the bar */
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    z-index: 80;
+    background: var(--card-bg);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 6px 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  /* ensure the mobile menu appears under the burger and follows viewport */
+  .mobile-menu {
+    position: fixed;
+    top: 56px;
+    right: 18px;
+    left: auto;
+    z-index: 79;
+    min-width: 200px;
   }
 
   .hero {
