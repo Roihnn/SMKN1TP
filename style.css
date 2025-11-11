@@ -752,11 +752,25 @@ html.light-mode body {
     right: 18px;
     transform: translateY(-50%);
     z-index: 80;
-    background: var(--card-bg);
+    /* use nav background (less transparent) for better visibility */
+    background: var(--nav-bg);
     color: var(--text);
     border-radius: 10px;
     padding: 6px 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(6px);
+    transition: box-shadow 0.16s ease, transform 0.12s ease;
+  }
+
+  .nav-toggle:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    transform: translateY(-50%) scale(1.02);
+  }
+
+  .nav-toggle:focus-visible {
+    outline: 2px solid rgba(6, 95, 70, 0.12);
+    outline-offset: 2px;
   }
 
   /* ensure the mobile menu appears under the burger and follows viewport */
@@ -767,6 +781,36 @@ html.light-mode body {
     left: auto;
     z-index: 79;
     min-width: 200px;
+    /* make background more solid so menu items are readable */
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 8px;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.18s ease, color 0.12s ease, transform 0.12s ease;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:active {
+    background: rgba(6, 182, 164, 0.1); /* subtle accent */
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .mobile-menu a:focus-visible {
+    outline: 2px solid rgba(6, 182, 164, 0.14);
+    outline-offset: 2px;
+  }
+  /* make primary CTA inside mobile menu stand out */
+  .mobile-menu a.cta {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #04203a;
+    font-weight: 700;
   }
 
   .hero {
